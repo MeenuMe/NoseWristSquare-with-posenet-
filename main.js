@@ -1,3 +1,9 @@
+noseX = 0;
+noseY = 0;
+lwristX = 0;
+rwristX = 0;
+difference = 0;
+
 function preload(){
 
 }
@@ -13,7 +19,10 @@ function setup(){
 }
 
 function draw(){
-    background(0);
+    background('#B0ACB7');
+    fill('#FF2FEF');
+    stroke(0);
+    square(noseX,noseY,difference);
 }
 
 function modelLoaded(){
@@ -23,5 +32,10 @@ function modelLoaded(){
 function gotPoses(results){
     if (results.length>0){
         console.log(results);
+        noseX = results[0].pose.nose.x;
+        noseY = results[0].pose.nose.y;
+        lwristX = results[0].pose.leftWrist.x;
+        rwristX = results[0].pose.rightWrist.x;
+        difference = floor(lwristX - rwristX);
     }
 }
